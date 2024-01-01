@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Playlists</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: 100vh;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        table {
+            width: 80%;
+            margin-top: 20px;
+            border-collapse: collapse;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        audio {
+            width: 100%;
+        }
+
+        td:nth-child(1) {
+            width: 15%; 
+        }
+
+        td:nth-child(2) {
+            width: 20%; 
+        }
+
+        td:nth-child(3) {
+            width: 30%; 
+        }
+
+        button {
+            padding: 8px;
+            cursor: pointer;
+            background-color: #4caf50;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <h1>My Playlists</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Description</th>
+                <th>Songs</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% playlists.forEach(playlist => { %>
+                <tr>
+                    <td><%= playlist.title %></td>
+                    <td><%= playlist.description %></td>
+                    <td>
+                        <% if (playlist.songs.length > 0) { %>
+                            <% playlist.songs.forEach(song => { %>
+                                <audio controls>
+                                    <source src="/uploads/songs/<%= encodeURIComponent(song) %>" type="audio/mp3">
+                                    Your browser does not support the audio element.
+                                </audio>
+                            <% }); %>
+                        <% } else { %>
+                            No songs added
+                        <% } %>
+                    </td>
+                    <td>
+                        <a href="/upload-song/<%= playlist._id %>"><button>Add song</button></a>
+                        <a href="/update-playlist/<%= playlist._id %>"><button>Update Playlist</button></a>
+                        <button onclick="deletePlaylist('<%= playlist._id %>')">Delete Playlist</button>
+                    </td>
+                </tr>
+            <% }); %>
+        </tbody>
+    </table>
+
+    <script>
+        function deletePlaylist(playlistId) {
+            if (confirm('Are you sure you want to delete this playlist?')) {
+                fetch(`/delete-playlist/${playlistId}`, {
+                    method: 'DELETE',
+                })
+                .then(response => response.json())
+                .then(data => {
+                    console.log(data);
+                    location.reload();
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+            }
+        }
+    </script>
+</body>
+</html>
+

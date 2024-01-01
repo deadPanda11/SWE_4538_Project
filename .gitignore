@@ -1,0 +1,44 @@
+.env
+# Node.js
+node_modules/
+
+# Logs
+logs
+*.log
+npm-debug.log*
+
+# Dependency directories
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# Optional - Debugging files
+.sass-cache/
+debug.log
+
+# Optional - Editor directories and files
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Optional - OS generated files
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Optional - Coverage output
+coverage/
+
+# Optional - Temporary files
+*.tmp
+*.temp
+*.bak
+*.swp
+
+# Optional - Compiled binary addons
+build/Release

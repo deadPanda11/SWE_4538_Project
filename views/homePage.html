@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        div {
+            text-align: center;
+        }
+
+        h1, p {
+            color: #333;
+        }
+
+        button {
+            background-color: #4caf50;
+            color: #fff;
+            padding: 15px 30px;
+            margin: 15px;
+            cursor: pointer;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        form {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <h1>MelodyMix</h1>
+        <p>Welcome to MelodyMix! You are now logged in.</p>
+
+        <div>
+            <a href="/create-playlist"><button>Create Playlist</button></a>
+            <a href="/playlists"><button>My Playlists</button></a>
+            <a href="/profile"><button>View Profile</button></a>
+        </div>
+
+        <form action="/logout" method="POST">
+            <button type="submit">Logout</button>
+        </form>
+    </div>
+</body>
+</html>
